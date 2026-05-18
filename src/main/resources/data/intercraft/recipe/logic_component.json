@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+        "#D#",
+        "oEo",
+        "/N/"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_ingot"
+        },
+        "D": {
+            "item": "minecraft:dragon_breath"
+        },
+        "o": {
+            "item": "minecraft:quartz"
+        },
+        "E": {
+            "item": "minecraft:ender_eye"
+        },
+        "/": {
+            "item": "minecraft:redstone_torch"
+        },
+        "N": {
+            "item": "minecraft:nether_star"
+        }
+    },
+    "result": {
+        "id": "intercraft:logic_component"
+    }
+}
