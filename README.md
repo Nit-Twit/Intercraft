@@ -8,7 +8,7 @@
 
 <p>Welcome to Intercraft, a mod that brings to internet to your favorite blocky world!</p>
 <p>As of right now, the only feature is villager trade linking. However, in the future more content will be added</p>
-<p>For help, join the discord server and ask a question. If you need to report a bug, use either discord or GitHub Issues.</p>
+<p>For help, join the discord server and ask a question. If you need to report a bug, use either discord or Github Issues.</p>
 <h1></h1>
 
 [//]: # (thanks create mod for the readme idea <3)
