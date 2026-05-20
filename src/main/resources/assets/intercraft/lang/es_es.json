@@ -1,0 +1,11 @@
+{
+    "block.intercraft.builders_laptop": "Portátil del constructor",
+    "item.intercraft.logic_component": "Componente lógico",
+    "creativetab.intercraft.main": "Intercraft",
+    "intercraft.gui.laptop": "Portátil del constructor",
+
+    "intercraft.messages.villagerlinked.success": "Aldeano vinculado al portátil",
+    "intercraft.messages.villagerlinked.fail": "Error al vincular al aldeano",
+    "intercraft.messages.villagerlinked.alreadylinked": "El aldeano ya está vinculado al portátil",
+    "intercraft.messages.villagerlinked.unlink": "Aldeano desvinculado del portátil"
+}

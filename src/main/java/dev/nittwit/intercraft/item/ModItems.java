@@ -13,8 +13,6 @@ public class ModItems {
     public static final DeferredItem<Item> LOGIC_COMPONENT = ITEMS.register("logic_component",
             () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 
-
-
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }

@@ -1,4 +1,11 @@
 {
+    "block.intercraft.builders_laptop": "Builder's Laptop",
     "item.intercraft.logic_component": "Logic Component",
-    "creativetab.intercraft.main": "Intercraft"
+    "creativetab.intercraft.main": "Intercraft",
+    "intercraft.gui.laptop": "Builder's Laptop",
+
+    "intercraft.messages.villagerlinked.success": "Villager linked to the laptop",
+    "intercraft.messages.villagerlinked.fail": "An error occurred while trying to link this villager",
+    "intercraft.messages.villagerlinked.alreadylinked": "Villager already linked to the laptop",
+    "intercraft.messages.villagerlinked.unlink": "Villager unlinked from the laptop"
 }

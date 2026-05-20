@@ -1,0 +1,11 @@
+{
+    "block.intercraft.builders_laptop": "Bygger's Laptop",
+    "item.intercraft.logic_component": "Logik Komponent",
+    "creativetab.intercraft.main": "Intercraft",
+    "intercraft.gui.laptop": "Bygger's Laptop",
+
+    "intercraft.messages.villagerlinked.success": "Landbyboer er nu koblet til Laptop",
+    "intercraft.messages.villagerlinked.fail": "Der var en fejl under tilkoblingen af denne landsbyboer",
+    "intercraft.messages.villagerlinked.alreadylinked": "Landsbyboeren er allerede koblet til Laptop",
+    "intercraft.messages.villagerlinked.unlink": "Landsbyboer frigivet fra Laptop"
+}

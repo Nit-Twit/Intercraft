@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+        "#/#",
+        "IoI",
+        "#R#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:black_concrete"
+        },
+        "/": {
+            "item": "minecraft:lightning_rod"
+        },
+        "I": {
+            "item": "intercraft:logic_component"
+        },
+        "o": {
+            "item": "minecraft:quartz"
+        },
+        "R": {
+            "item": "minecraft:redstone_torch"
+        }
+    },
+    "result": {
+        "id": "intercraft:builders_laptop"
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "block.intercraft.builders_laptop": "Byggarens bärbara dator",
+    "item.intercraft.logic_component": "Logik komponent",
+    "creativetab.intercraft.main": "Intercraft",
+    "intercraft.gui.laptop": "Byggarens bärbara dator",
+
+    "intercraft.messages.villagerlinked.success": "Bybo kopplad till bärbar dator",
+    "intercraft.messages.villagerlinked.fail": "Ett fel uppstod inom försök av att koppla denna bybo",
+    "intercraft.messages.villagerlinked.alreadylinked": "Bybo redan kopplad till bärbar dator",
+    "intercraft.messages.villagerlinked.unlink": "Bybo kopplad ifrån bärbar dator"
+}

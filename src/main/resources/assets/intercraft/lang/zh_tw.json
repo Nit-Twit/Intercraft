@@ -1,0 +1,11 @@
+{
+    "block.intercraft.builders_laptop": "建造者的電腦",
+    "item.intercraft.logic_component": "邏輯元件",
+    "creativetab.intercraft.main": "Intercraft",
+    "intercraft.gui.laptop": "建造者的電腦",
+
+    "intercraft.messages.villagerlinked.success": "村民已成功地連接至電腦",
+    "intercraft.messages.villagerlinked.fail": "哎呀！出了點小錯誤，無法連結至村民",
+    "intercraft.messages.villagerlinked.alreadylinked": "村民已經連結至電腦過了",
+    "intercraft.messages.villagerlinked.unlink": "村民已成功地與電腦斷開連結"
+}

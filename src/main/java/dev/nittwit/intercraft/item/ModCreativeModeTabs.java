@@ -1,6 +1,7 @@
 package dev.nittwit.intercraft.item;
 
 import dev.nittwit.intercraft.Intercraft;
+import dev.nittwit.intercraft.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -15,9 +16,10 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Intercraft.MOD_ID);
 
     public static final Supplier<CreativeModeTab> INTERCRAFT_TAB = CREATIVE_MODE_TAB.register("mod_creative_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.LOGIC_COMPONENT.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.BUILDERS_LAPTOP.get()))
                     .title(Component.translatable("creativetab.intercraft.main"))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModBlocks.BUILDERS_LAPTOP);
                         output.accept(ModItems.LOGIC_COMPONENT);
                     }).build());
 

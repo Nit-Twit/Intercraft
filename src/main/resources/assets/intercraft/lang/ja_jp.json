@@ -1,0 +1,11 @@
+{
+    "block.intercraft.builders_laptop": "ビルダーのノートPC",
+    "item.intercraft.logic_component": "ロジックコンポーネント",
+    "creativetab.intercraft.main": "インタークラフト",
+    "intercraft.gui.laptop": "ビルダーのノートPC",
+
+    "intercraft.messages.villagerlinked.success": "村人をノートPCにリンク",
+    "intercraft.messages.villagerlinked.fail": "村人のリンクエラー",
+    "intercraft.messages.villagerlinked.alreadylinked": "その村人はすでにリンク済み",
+    "intercraft.messages.villagerlinked.unlink": "村人のリンク解除"
+}

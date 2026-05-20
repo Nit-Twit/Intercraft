@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "intercraft:block/builders_laptop"
+        },
+        "facing=south": {
+            "model": "intercraft:block/builders_laptop",
+            "y": 180
+        },
+        "facing=east": {
+            "model": "intercraft:block/builders_laptop",
+            "y":90
+        },
+        "facing=west": {
+            "model": "intercraft:block/builders_laptop",
+            "y": 270
+        }
+    }
+}

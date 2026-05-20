@@ -1,10 +1,12 @@
 package dev.nittwit.intercraft.block;
 
 import dev.nittwit.intercraft.Intercraft;
+import dev.nittwit.intercraft.block.custom.BuildersLaptopBLock;
 import dev.nittwit.intercraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -14,8 +16,10 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Intercraft.MOD_ID);
 
-//    public static final DeferredBlock<>
+    public static final DeferredBlock<Block> BUILDERS_LAPTOP = registerBlock("builders_laptop",
+            () -> new BuildersLaptopBLock(BlockBehaviour.Properties.of().noOcclusion()));
 
+    @SuppressWarnings("SameParameterValue")
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
