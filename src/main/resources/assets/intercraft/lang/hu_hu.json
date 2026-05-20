@@ -1,0 +1,12 @@
+{
+
+    "block.intercraft.builders_laptop": "Épitő laptopja",
+    "item.intercraft.logic_component": "Logikai alkatrész",
+    "creativetab.intercraft.main": "Intercraft",
+    "intercraft.gui.laptop": "Épitő laptopja",
+
+    "intercraft.messages.villagerlinked.success": "Falusi sikeresen összekapcsolva a laptoppal",
+    "intercraft.messages.villagerlinked.fail": "Hiba történt a falusi összekapcsolásakor",
+    "intercraft.messages.villagerlinked.alreadylinked": "A falusi már össze van kapcsolva a laptoppal",
+    "intercraft.messages.villagerlinked.unlink": "Falusi sikeresen leválasztva a laptopról"
+}
