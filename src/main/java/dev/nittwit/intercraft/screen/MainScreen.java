@@ -63,14 +63,7 @@ public class MainScreen extends AbstractContainerScreen<LaptopMainMenu> {
 
             ClientLevel level = Minecraft.getInstance().level;
 
-            addRenderableWidget(new DarkButton(
-                    x,
-                    y,
-                    BUTTON_WIDTH,
-                    BUTTON_HEIGHT,
-                    Component.literal(name),
-                    btn -> onVillagerClick(dataIndex)
-            ));
+            addRenderableWidget(Button.builder(Component.literal(name), btn -> onVillagerClick(dataIndex)).pos(x, y).size(BUTTON_WIDTH, BUTTON_HEIGHT).build());
         }
     }
 
@@ -126,7 +119,8 @@ public class MainScreen extends AbstractContainerScreen<LaptopMainMenu> {
     }
 
     @Override
-    protected void renderBlurredBackground(float partialTick) {}
+    protected void renderBlurredBackground(float partialTick) {
+    }
 
     @Override
     protected void renderLabels(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
