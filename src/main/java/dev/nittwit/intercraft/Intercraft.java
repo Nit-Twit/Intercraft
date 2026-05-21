@@ -1,5 +1,6 @@
 package dev.nittwit.intercraft;
 
+import com.mojang.logging.LogUtils;
 import dev.nittwit.intercraft.block.ModBlocks;
 import dev.nittwit.intercraft.block.entity.ModBlockEntities;
 import dev.nittwit.intercraft.item.ModCreativeModeTabs;
@@ -9,6 +10,8 @@ import dev.nittwit.intercraft.item.ModItems;
 //
 //import com.mojang.logging.LogUtils;
 
+import dev.nittwit.intercraft.screen.ModMenus;
+import dev.nittwit.intercraft.util.NameManager;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -18,11 +21,15 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import org.slf4j.Logger;
 
 @Mod(Intercraft.MOD_ID)
 public class Intercraft {
     public static final String MOD_ID = "intercraft";
-//    public static final Logger LOGGER = LogUtils.getLogger();
+    public static final NameManager NAME_MANAGER = new NameManager();
+    public static final Logger LOGGER = LogUtils.getLogger();
+
+
 
     public Intercraft(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
@@ -32,8 +39,10 @@ public class Intercraft {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModMenus.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(new ServerEvents());
+        NeoForge.EVENT_BUS.register(new ReloadEvents());
 
         modEventBus.addListener(this::addCreative);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -51,4 +60,6 @@ public class Intercraft {
     public void onServerStarting(ServerStartingEvent event) {
         // Literally I don't know what to put here ;-;
     }
+
+
 }

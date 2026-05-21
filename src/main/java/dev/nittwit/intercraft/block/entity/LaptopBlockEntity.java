@@ -23,18 +23,20 @@ public class LaptopBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
+    public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         super.loadAdditional(tag, registries);
 
         LINKED_VILLAGERS.clear();
-        ListTag list = tag.getList(LINKED_KEY, Tag.TAG_STRING);
-        for (int i = 0; i < list.size(); i++) {
-            LINKED_VILLAGERS.add(list.getString(i));
+        if (tag.contains(LINKED_KEY)) {
+            ListTag list = tag.getList(LINKED_KEY, Tag.TAG_STRING);
+            for (int i = 0; i < list.size(); i++) {
+                LINKED_VILLAGERS.add(list.getString(i));
+            }
         }
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
 
         ListTag list = new ListTag();
@@ -47,6 +49,10 @@ public class LaptopBlockEntity extends BlockEntity {
     public void addTag(String tag) {
         LINKED_VILLAGERS.add(tag);
         setChanged();
+    }
+
+    public List<String> get() {
+        return LINKED_VILLAGERS;
     }
 
 

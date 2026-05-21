@@ -6,6 +6,7 @@ import dev.nittwit.intercraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -17,7 +18,7 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Intercraft.MOD_ID);
 
     public static final DeferredBlock<Block> BUILDERS_LAPTOP = registerBlock("builders_laptop",
-            () -> new BuildersLaptopBLock(BlockBehaviour.Properties.of().noOcclusion()));
+            () -> new BuildersLaptopBLock(BlockBehaviour.Properties.of().noOcclusion().sound(SoundType.STONE)));
 
     @SuppressWarnings("SameParameterValue")
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

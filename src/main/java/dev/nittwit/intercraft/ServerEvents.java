@@ -3,6 +3,7 @@ package dev.nittwit.intercraft;
 import com.mojang.logging.LogUtils;
 import dev.nittwit.intercraft.block.ModBlocks;
 import dev.nittwit.intercraft.block.entity.ModBlockEntities;
+import dev.nittwit.intercraft.util.NameManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -15,11 +16,14 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.phys.HitResult;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -61,15 +65,27 @@ public class ServerEvents {
                                 .withBold(true)), true
                 );
             } else {
-                event.getLevel().playSound(player, BlockPos.containing(villager.position()), SoundEvents.VILLAGER_TRADE, SoundSource.NEUTRAL, 1.0F, 1.0F);
-                player.displayClientMessage(
-                        Component.translatable("intercraft.messages.villagerlinked.success").setStyle(Style.EMPTY
-                                .withColor(ChatFormatting.GREEN)
-                                .withBold(true)), true
-                );
+                if (villager.getVillagerData().getProfession() == VillagerProfession.NONE ||
+                    villager.getVillagerData().getProfession() == VillagerProfession.NITWIT) {
+                    event.getLevel().playSound(player, BlockPos.containing(villager.position()), SoundEvents.VILLAGER_NO, SoundSource.NEUTRAL, 1.0F, 1.0F);
+                    player.displayClientMessage(
+                            Component.translatable("intercraft.messages.villagerlinked.noprofession").setStyle(Style.EMPTY
+                                    .withColor(ChatFormatting.RED)
+                                    .withBold(true)), true
+                    );
+                } else {
+                    event.getLevel().playSound(player, BlockPos.containing(villager.position()), SoundEvents.VILLAGER_CELEBRATE, SoundSource.NEUTRAL, 1.0F, 1.0F);
+                    player.displayClientMessage(
+                            Component.translatable("intercraft.messages.villagerlinked.success").setStyle(Style.EMPTY
+                                    .withColor(ChatFormatting.GREEN)
+                                    .withBold(true)), true
+                    );
+                }
             }
         } else if (!villagerLinked) {
             // read existing list from BLOCK_ENTITY_DATA
+            if (villager.getVillagerData().getProfession() == VillagerProfession.NONE ||
+                    villager.getVillagerData().getProfession() == VillagerProfession.NITWIT) return;
             CustomData beData = item.get(DataComponents.BLOCK_ENTITY_DATA);
             CompoundTag existing = (beData != null) ? beData.copyTag() : new CompoundTag();
 
@@ -88,6 +104,14 @@ public class ServerEvents {
             } else {
                 item.remove(DataComponents.ENCHANTMENT_GLINT_OVERRIDE);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onFinalizeSpawn(@NotNull FinalizeSpawnEvent event) {
+        if (event.getEntity() instanceof Villager villager) {
+            String name = Intercraft.NAME_MANAGER.getRandomName();
+            villager.setCustomName(Component.literal(name));
         }
     }
 }

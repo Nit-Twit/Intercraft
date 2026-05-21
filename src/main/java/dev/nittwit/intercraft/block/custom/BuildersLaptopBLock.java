@@ -2,14 +2,24 @@ package dev.nittwit.intercraft.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import dev.nittwit.intercraft.block.entity.LaptopBlockEntity;
+import dev.nittwit.intercraft.block.entity.ModBlockEntities;
+import dev.nittwit.intercraft.screen.LaptopMainMenu;
+import dev.nittwit.intercraft.screen.LaptopMenuProvider;
+import dev.nittwit.intercraft.screen.MainScreen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -27,10 +37,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BuildersLaptopBLock extends BaseEntityBlock {
 
@@ -101,8 +115,25 @@ public class BuildersLaptopBLock extends BaseEntityBlock {
     @NotNull
     @Override
     protected InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
-        if (level.isClientSide && !player.isCrouching()) {
-            // TODO: Open Menu
+        if (!level.isClientSide && !player.isCrouching()) {
+            BlockPos blockPos;
+            BlockEntity laptop = level.getBlockEntity(pos);
+
+            List<String> LINKED_VILLAGERS =
+                    (laptop instanceof LaptopBlockEntity laptopBe)
+                            ? laptopBe.get()
+                            : new ArrayList<>();
+
+            if (player instanceof ServerPlayer serverPlayer) {
+                serverPlayer.openMenu(new LaptopMenuProvider(LINKED_VILLAGERS), buffer -> {
+                    buffer.writeCollection(LINKED_VILLAGERS, FriendlyByteBuf::writeUtf);
+                });
+            }
+
+//            player.openMenu(new SimpleMenuProvider(
+//                    (windowId, inv, p )-> new LaptopMainMenu(windowId, inv, LINKED_VILLAGERS),
+//                    Component.translatable("intercraft.gui.laptop")
+//            ));
             return InteractionResult.SUCCESS;
         } else if (!level.isClientSide && player.isCrouching()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
@@ -127,6 +158,26 @@ public class BuildersLaptopBLock extends BaseEntityBlock {
             );
         }
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state,
+                              @Nullable BlockEntity blockEntity, ItemStack tool) {
+        if (!level.isClientSide && blockEntity instanceof LaptopBlockEntity be) {
+            ItemStack stack = new ItemStack(this.asItem());
+
+            CompoundTag tag = new CompoundTag();
+            be.saveAdditional(tag, level.registryAccess());
+            BlockItem.setBlockEntityData(stack, ModBlockEntities.BUILDERS_LAPTOP_BE.get(), tag);
+
+            if (!be.getLinkedVillagers().isEmpty()) {
+                stack.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);
+            }
+
+            popResource(level, pos, stack);
+        } else {
+            super.playerDestroy(level, player, pos, state, blockEntity, tool);
+        }
     }
 
     @Override
