@@ -1,4 +1,4 @@
-![Logo](https://github.com/Nit-Twit/Intercraft/blob/main/src/main/resources/mod_logo.png?raw=true)
+`![Logo](https://github.com/Nit-Twit/Intercraft/blob/main/src/main/resources/mod_logo.png?raw=true)
 <h1 align="center">
 	<a href="https://discord.gg/khjN8XPjHb"><img src="https://img.shields.io/discord/1394333793325678683?color=5865F2&label=Discord&style=for-the-badge" alt="Discord"></a>
 	<a href="https://www.curseforge.com/minecraft/mc-mods/no-superflat-slimes"><img src="https://img.shields.io/curseforge/dt/1542505?logo=curseforge&label=&suffix=%20&logoSize=auto&style=for-the-badge&color=242629&labelColor=F16436&logoColor=1C1C1C" alt="CurseForge"></a>

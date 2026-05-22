@@ -6,25 +6,23 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-public class DarkButton extends Button {
+public class ControlButton extends Button {
 
     // Replace "modid" with your actual mod ID
     private static final ResourceLocation TEXTURE_NORMAL =
-            ResourceLocation.fromNamespaceAndPath(Intercraft.MOD_ID, "textures/gui/dark_button.png");
+            ResourceLocation.fromNamespaceAndPath(Intercraft.MOD_ID, "textures/gui/control_button.png");
     private static final ResourceLocation TEXTURE_HIGHLIGHTED =
-            ResourceLocation.fromNamespaceAndPath(Intercraft.MOD_ID, "textures/gui/dark_button_highlighted.png");
-    private static final ResourceLocation TEXTURE_SELECTED =
-            ResourceLocation.fromNamespaceAndPath(Intercraft.MOD_ID, "textures/gui/dark_button_selected.png");
-    private static final ResourceLocation TEXTURE_SELECTED_HIGHLIGHTED =
-            ResourceLocation.fromNamespaceAndPath(Intercraft.MOD_ID, "textures/gui/dark_button_selected_highlighted.png");
+            ResourceLocation.fromNamespaceAndPath(Intercraft.MOD_ID, "textures/gui/control_button_highlighted.png");
+    private static final ResourceLocation TEXTURE_DISABLED =
+            ResourceLocation.fromNamespaceAndPath(Intercraft.MOD_ID, "textures/gui/control_button_disabled.png");
 
-    private boolean selected = false;
+    private boolean disabled = false;
 
     public static class Builder {
         private final Component message;
         private final OnPress onPress;
         private int x, y, width = 200, height = 20;
-        private boolean selected = false;  // add this
+        private boolean disabled = false;  // add this
 
         public Builder(Component message, OnPress onPress) {
             this.message = message;
@@ -51,46 +49,46 @@ public class DarkButton extends Button {
             return this;
         }
 
-        public Builder selected(boolean selected) {
-            this.selected = selected;
+        public Builder disabled(boolean disabled) {
+            this.disabled = disabled;
             return this;
         }
 
-        public DarkButton build() {
-            DarkButton temp = new DarkButton(x, y, width, height, message, onPress);
-            if (selected) temp.select();
+        public ControlButton build() {
+            ControlButton temp = new ControlButton(x, y, width, height, message, onPress);
+            if (disabled) temp.disable();
             return temp;
         }
     }
 
-    public static Builder darkBuilder(Component message, Button.OnPress onPress) {
+    public static Builder darkBuilder(Component message, OnPress onPress) {
         return new Builder(message, onPress);
     }
 
-    public DarkButton(int x, int y, int width, int height, Component message, OnPress onPress) {
+    public ControlButton(int x, int y, int width, int height, Component message, OnPress onPress) {
         super(x, y, width, height, message, onPress, DEFAULT_NARRATION);
     }
 
-    public static DarkButton create(int x, int y, int width, int height, Component message, OnPress onPress) {
-        return new DarkButton(x, y, width, height, message, onPress);
+    public static ControlButton create(int x, int y, int width, int height, Component message, OnPress onPress) {
+        return new ControlButton(x, y, width, height, message, onPress);
     }
 
-    public void select() {
-        this.selected = true;
+    public void disable() {
+        this.disabled = true;
     }
 
-    public void deselect() {
-        this.selected = false;
+    public void enable() {
+        this.disabled = false;
     }
 
-    public boolean isSelected() {
-        return selected;
+    public boolean isdisabled() {
+        return disabled;
     }
 
     private ResourceLocation getTexture() {
         boolean highlighted = this.isHovered() || this.isFocused();
-        if (selected) {
-            return highlighted ? TEXTURE_SELECTED_HIGHLIGHTED : TEXTURE_SELECTED;
+        if (disabled) {
+            return TEXTURE_DISABLED;
         } else {
             return highlighted ? TEXTURE_HIGHLIGHTED : TEXTURE_NORMAL;
         }
